@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nick's Fall 2026 Semester</title>
-  <meta name="theme-color" content="#dcecf8">
+  <title>Nick's Fall 2026 semester</title>
+  <meta name="theme-color" content="#f8e9ef">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <style>body{background:#dcecf8}.calendar-section{margin:28px 0 34px}.weekly-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);background:var(--panel);overflow:hidden}.calendar-day{min-height:145px;border-right:1px solid var(--line)}.calendar-day:last-child{border-right:0}.calendar-day-head{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid var(--line);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.1em}.calendar-day-head b{font:600 19px 'Space Grotesk';color:var(--ink);letter-spacing:0}.calendar-items{display:grid;gap:6px;padding:10px}.calendar-item{border:0;border-left:4px solid var(--course-color);background:#f1f0e9;padding:8px;text-align:left;border-radius:2px}.calendar-item strong,.calendar-item small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.calendar-item strong{font-size:11px}.calendar-item small{margin-top:3px;color:var(--muted);font-size:9px}.calendar-item:hover{background:#e8e7de}.calendar-empty{color:#bbbdb3;font-size:18px;padding:10px}.calendar-pending{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:11px}.calendar-pending .eyebrow{margin-right:3px}@media(max-width:800px){.weekly-calendar{overflow-x:auto;grid-template-columns:repeat(7,125px)}.calendar-day{min-height:125px}}</style>
+  <style>body{background:#f8e9ef}.calendar-section{margin:28px 0 34px}.weekly-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);background:var(--panel);overflow:hidden}.calendar-day{min-height:145px;border-right:1px solid var(--line)}.calendar-day:last-child{border-right:0}.calendar-day-head{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid var(--line);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.1em}.calendar-day-head b{font:600 19px 'Space Grotesk';color:var(--ink);letter-spacing:0}.calendar-items{display:grid;gap:6px;padding:10px}.calendar-item{border:0;border-left:4px solid var(--course-color);background:#f1f0e9;padding:8px;text-align:left;border-radius:2px}.calendar-item strong,.calendar-item small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.calendar-item strong{font-size:11px}.calendar-item small{margin-top:3px;color:var(--muted);font-size:9px}.calendar-item:hover{background:#e8e7de}.calendar-empty{color:#bbbdb3;font-size:18px;padding:10px}.calendar-pending{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:11px}.calendar-pending .eyebrow{margin-right:3px}@media(max-width:800px){.weekly-calendar{overflow-x:auto;grid-template-columns:repeat(7,125px)}.calendar-day{min-height:125px}}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <a class="brand" href="#overview" aria-label="Nick Fall 26 home"><span class="brand-mark">26</span><span>fall command<br><b>center</b></span></a>
+      <a class="brand" href="#overview" aria-label="Fall 26 home"><span class="brand-mark">26</span><span>fall command<br><b>center</b></span></a>
       <div class="term-label">UMD / Fall 2026</div>
       <nav class="main-nav" aria-label="Main navigation">
         <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span>Overview</button>
@@ -25,11 +25,11 @@
         <button class="nav-item" data-view="timesheet"><span class="nav-icon">◷</span>Time sheet</button>
       </nav>
       <div class="sidebar-courses"><div class="eyebrow">Your classes</div><div id="courseRail"></div></div>
-      <div class="sidebar-bottom"><span class="status-dot"></span> All changes saved locally<br><span class="source-note">Built from your Fall '26 course files</span></div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> All changes saved locally<br><span class="source-note">Built from your Nick Fall '26 course files</span></div>
     </aside>
 
     <main class="content">
-      <header class="topbar"><div class="mobile-brand">Nick's Fall '26 <b>command center</b></div><div class="today" id="todayLabel"></div><button class="button ghost" id="authButton">Sign in</button><button class="icon-button" id="quickAdd" title="Add assignment">+</button></header>
+      <header class="topbar"><div class="mobile-brand">Fall '26 <b>command center</b></div><div class="today" id="todayLabel"></div><button class="button ghost" id="authButton">Sign in</button><button class="icon-button" id="quickAdd" title="Add assignment">+</button></header>
       <div id="app"></div>
     </main>
   </div>
@@ -37,6 +37,6 @@
   <dialog id="assignmentDialog" class="modal"><form method="dialog" id="assignmentForm"><div class="modal-head"><div><div class="eyebrow">New record</div><h2>Add assignment</h2></div><button class="close-button" value="cancel" aria-label="Close">×</button></div><div class="form-grid"><label>Assignment name<input name="name" required placeholder="e.g. Homework 2"></label><label>Class<select name="course" id="assignmentCourse"></select></label><label>Category<select name="category" id="assignmentCategory"></select></label><label>Due date<input name="due" type="date"></label><label>Weight (%)<input name="weight" type="number" readonly aria-describedby="weightHelp"><small id="weightHelp">Matched to the grading scale</small></label><label>Status<select name="status"><option value="todo">To do</option><option value="progress">In progress</option><option value="done">Done</option></select></label><label>Points earned<input name="earned" type="number" min="0" step="0.1" placeholder="Leave blank if ungraded"></label><label>Points possible<input name="possible" type="number" min="0" step="0.1" value="100"></label></div><label class="wide-label">Notes<textarea name="notes" rows="3" placeholder="What needs to happen next?"></textarea></label><div class="modal-actions"><button class="button ghost" value="cancel">Cancel</button><button class="button primary" value="default">Save assignment</button></div></form></dialog>
   <dialog id="timeDialog" class="modal"><form method="dialog" id="timeForm"><div class="modal-head"><div><div class="eyebrow">Study log</div><h2>Log time</h2></div><button class="close-button" value="cancel" aria-label="Close">×</button></div><div class="form-grid"><label>Class<select name="course" id="timeCourse"></select></label><label>Date<input name="date" type="date" required></label><label>Hours<input name="hours" type="number" min="0.25" step="0.25" required placeholder="1.5"></label><label>Focus<select name="kind"><option>Lecture / class</option><option>Homework</option><option>Reading</option><option>Project</option><option>Exam prep</option></select></label></div><label class="wide-label">Note<input name="note" placeholder="What did you work on?"></label><div class="modal-actions"><button class="button ghost" value="cancel">Cancel</button><button class="button primary" value="default">Log hours</button></div></form></dialog>
   <dialog id="authDialog" class="modal"><form method="dialog" id="authForm"><div class="modal-head"><div><div class="eyebrow">Owner access</div><h2>Sign in to edit</h2></div><button class="close-button" value="cancel" aria-label="Close">×</button></div><label>Email<input name="email" type="email" required autocomplete="email"></label><label class="wide-label">Password<input name="password" type="password" required autocomplete="current-password"></label><p class="assignment-meta" id="authMessage">Viewers can use the site without signing in.</p><div class="modal-actions"><button class="button ghost" value="cancel">Cancel</button><button class="button primary" value="default">Sign in</button></div></form></dialog>
-  <script src="app.js?v=edit-weight-fix"></script>
+  <script src="app.js?v=score-entry-fix"></script>
 </body>
 </html>

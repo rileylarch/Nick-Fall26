@@ -41,7 +41,9 @@ function requireAuth(action = 'edit this') {
 const app = document.querySelector('#app');
 const moneyDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
 const fullDate = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-const today = new Date('2026-08-18T12:00:00');
+const today = new Date();
+today.setHours(12, 0, 0, 0);
+const headerDateLabel = `${today.toLocaleDateString('en-US', { weekday: 'long' })} / ${today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
 
 document.querySelector('#todayLabel').textContent = fullDate.format(today);
 document.querySelector('#assignmentCourse').innerHTML = courseOptions();
@@ -212,7 +214,7 @@ function renderOverview() {
   const hours = logs.reduce((sum, item) => sum + Number(item.hours), 0);
   const graded = courses.map(course => courseGrade(course.id)).filter(Boolean);
   const average = graded.length ? graded.reduce((sum, value) => sum + value, 0) / graded.length : null;
-  app.innerHTML = `<div class="page">${header('Tuesday / August 18, 2026', 'Your semester, in one place.', 'A calm view of what is due, how your grades are moving, and where your time is going.', currentSession ? '<button class="button primary" id="overviewAdd">+ Add assignment</button>' : '')}<div class="stats"><div class="stat"><div class="stat-label">Open assignments</div><div class="stat-value">${open.length}</div></div><div class="stat"><div class="stat-label">Current average</div><div class="stat-value">${average ? `${average.toFixed(1)}%` : '--'}</div></div><div class="stat"><div class="stat-label">Logged this term</div><div class="stat-value">${hours.toFixed(1)}h</div></div><div class="stat"><div class="stat-label">Completed</div><div class="stat-value">${assignments.length ? Math.round(assignments.filter(item => item.status === 'done').length / assignments.length * 100) : 0}%</div></div></div>${weeklyCalendar()}<div class="split"><section class="section"><div class="section-head"><h2>Next on your radar</h2><button class="text-button" data-action="navigate" data-view="assignments">View all</button></div>${upcoming().map(item => assignmentCard(item, true)).join('') || '<div class="empty">Nothing waiting. Add your first assignment.</div>'}</section>${todoList()}</div></div>`;
+  app.innerHTML = `<div class="page">${header(headerDateLabel, 'Your semester, in one place.', 'A calm view of what is due, how your grades are moving, and where your time is going.', currentSession ? '<button class="button primary" id="overviewAdd">+ Add assignment</button>' : '')}<div class="stats"><div class="stat"><div class="stat-label">Open assignments</div><div class="stat-value">${open.length}</div></div><div class="stat"><div class="stat-label">Current average</div><div class="stat-value">${average ? `${average.toFixed(1)}%` : '--'}</div></div><div class="stat"><div class="stat-label">Logged this term</div><div class="stat-value">${hours.toFixed(1)}h</div></div><div class="stat"><div class="stat-label">Completed</div><div class="stat-value">${assignments.length ? Math.round(assignments.filter(item => item.status === 'done').length / assignments.length * 100) : 0}%</div></div></div>${weeklyCalendar()}<div class="split"><section class="section"><div class="section-head"><h2>Next on your radar</h2><button class="text-button" data-action="navigate" data-view="assignments">View all</button></div>${upcoming().map(item => assignmentCard(item, true)).join('') || '<div class="empty">Nothing waiting. Add your first assignment.</div>'}</section>${todoList()}</div></div>`;
   document.querySelector('#overviewAdd')?.addEventListener('click', () => { if (requireAuth('add assignments')) openAssignment(); });
   document.querySelectorAll('[data-calendar-assignment]').forEach(button => button.addEventListener('click', () => openAssignment(button.dataset.calendarAssignment)));
   bindTodos();

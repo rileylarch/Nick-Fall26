@@ -197,7 +197,7 @@ function render() {
   document.querySelectorAll('.edit-assignment').forEach(button => button.addEventListener('click', () => openAssignment(button.dataset.id)));
   document.querySelectorAll('[data-action="navigate"]').forEach(button => button.addEventListener('click', () => navigate(button.dataset.view)));
 }
-function header(kicker, title, description, action = '') { title = title === 'Your semester, in one place.' ? "Riley's Fall 2026 Semester" : title; return `<div class="page-heading"><div><div class="eyebrow">${kicker}</div><h1>${title}</h1><p>${description}</p></div>${action}</div>`; }
+function header(kicker, title, description, action = '') { title = title === 'Your semester, in one place.' ? "Nick's Fall 2026 Semester" : title; return `<div class="page-heading"><div><div class="eyebrow">${kicker}</div><h1>${title}</h1><p>${description}</p></div>${action}</div>`; }
 function weeklyCalendar() {
   const weekStart = new Date(today);
   weekStart.setDate(today.getDate() - ((today.getDay() + 6) % 7));

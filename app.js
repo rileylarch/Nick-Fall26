@@ -120,12 +120,12 @@ function courseById(id) { return courses.find(course => course.id === id); }
 function courseOptions() { return courses.map(course => `<option value="${course.id}">${course.code} - ${course.name}</option>`).join(''); }
 function assignmentWeight(courseId, category) { return Number(courseById(courseId)?.weights?.[category] || 0); }
 function updateCategoryOptions() {
-  const course = courseById(document.querySelector('#assignmentCourse').value || '302');
+  const course = courseById(document.querySelector('#assignmentCourse').value) || courses[0];
   document.querySelector('#assignmentCategory').innerHTML = course.categories.map(category => `<option>${category}</option>`).join('');
   updateAssignmentWeight();
 }
 function updateAssignmentWeight() {
-  const courseId = document.querySelector('#assignmentCourse').value || '302';
+  const courseId = document.querySelector('#assignmentCourse').value || courses[0].id;
   document.querySelector('#assignmentForm [name="weight"]').value = assignmentWeight(courseId, document.querySelector('#assignmentCategory').value);
 }
 function navigate(view) {
@@ -276,7 +276,7 @@ function openAssignment(id = '') {
   if (!requireAuth('add or edit assignments')) return;
   const form = document.querySelector('#assignmentForm'); form.reset(); form.dataset.editId = id;
   const item = assignments.find(assignment => assignment.id === id);
-  form.elements.course.value = item?.course || '302';
+  form.elements.course.value = item?.course || courses[0].id;
   updateCategoryOptions();
   if (item && courseById(item.course)?.categories.includes(item.category)) form.elements.category.value = item.category;
   form.elements.weight.value = assignmentWeight(form.elements.course.value, form.elements.category.value) || Number(item?.weight) || 0;

@@ -1,7 +1,8 @@
 const courses = [
   { id: '608', code: 'CHBE 608', name: 'Research at UMD', color: '#b9d6ed', categories: ['Literature review', 'Research notebook', 'Project update'], weights: { 'Literature review': 30, 'Research notebook': 25, 'Project update': 45 } },
-  { id: '610', code: 'CHBE 610', name: 'Thermo', color: '#9fc8e8', categories: ['Homework', 'Quiz', 'Midterm', 'Final'], weights: { Homework: 20, Quiz: 15, Midterm: 25, Final: 40 } },
-  { id: '620', code: 'CHBE 620', name: 'Engineering Analysis', color: '#c6bde5', categories: ['Homework', 'Problem sets', 'Project', 'Final exam'], weights: { Homework: 25, 'Problem sets': 20, Project: 25, 'Final exam': 30 } }
+  { id: '610', code: 'CHBE 610', name: 'Thermo', color: '#9fc8e8', categories: ['Homework', 'Exam 1', 'Exam 2', 'Final exam', 'Term project'], weights: { Homework: 20, 'Exam 1': 20, 'Exam 2': 20, 'Final exam': 25, 'Term project': 15 } },
+  { id: '620', code: 'CHBE 620', name: 'Engineering Analysis', color: '#c6bde5', categories: ['Homework', 'Problem sets', 'Project', 'Final exam'], weights: { Homework: 25, 'Problem sets': 20, Project: 25, 'Final exam': 30 } },
+  { id: '672', code: 'CHBE 672', name: 'Pollution in Air Sources', color: '#e6c49b', categories: ['Participation', 'Problem sets', 'Reading reviews', 'Thought assignments', 'Exam 1', 'Exam 2', 'Presentation', 'Final paper'], weights: { Participation: 5, 'Problem sets': 15, 'Reading reviews': 5, 'Thought assignments': 5, 'Exam 1': 20, 'Exam 2': 20, Presentation: 20, 'Final paper': 10 } }
 ];
 
 const seedAssignments = [
